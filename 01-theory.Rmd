@@ -1,0 +1,145 @@
+<!--
+This is for including Chapter 1.  Notice that it's also good practice to name your chunk.  This will help you debug potential issues as you knit.  The chunk above is called intro and the one below is called chapter1.  Feel free to change the name of the Rmd file as you wish, but don't forget to change it here from chap1.Rmd.
+-->
+
+<!--
+The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
+-->
+
+```{r include=FALSE}
+library(kableExtra)
+library(dplyr)
+library(tidyr)
+
+```
+
+
+
+
+# Theoretical Basis {#Theory}
+This chapter details the theoretical basis for this thesis. Initially, literature will be reviewed beginning with irrigation expansion drivers and followed by a detailed account of prior irrigation modeling studies. Finally, an account of the basics of Bayesian inference will be described. 
+
+## Literature
+
+### Drivers of Irrigation Expansion
+
+
+Understanding the mechanisms behind irrigation and the features of irrigation systems is imperative to understanding why, when, and where irrigation is implemented. According to the @faoGuidelinesDesigningEvaluating1989, the choice by the farmer of irrigation technology is dependent on several intertwined socio-economic and biophysical concerns. Multitudes of literature exist detailing the considerations necessary when choosing an irrigation system, but little exists on why farmers choose to irrigate in the first place. Although the distinction is notable and directly equating the choice of a specific irrigation technology to the decision to begin irrigating is perhaps naive, it is important to understand that the decision to irrigate *is not possible*  without the simultaneous choice of an irrigation technology. Therefore using the irrigation technology selection criteria outlined by @faoGuidelinesDesigningEvaluating1989 as a basis to discuss drivers of irrigation expansion is justified. 
+
+By using these areas as a guideline for what farmers are concerned about when establishing an irrigation system and why those concerns exist, not only can the causal relationship between external conditions and irrigation expansion be investigated, but appropriate predictors for the hierarchical model can also be selected. These eight components are detailed in the subsections below. 
+
+To begin, it is important to know a little bit about irrigation systems. Irrigation systems can be divided into two main systems: gravity fed which includes all types of surface irrigation, and mechanized pump systems, such as sprinkler or localized distributions [@bjornebergIRRIGATIONMethods2013]. Surface irrigation, such as furrow, basin, or border irrigation, is the oldest, simplest, and cheapest method available and used on around 85% of the irrigated land in the world [@bjornebergIRRIGATIONMethods2013], holzapfel_irrigation_2008}. Pumped irrigation systems are less common globally. 
+
+\subsubsection{Water}
+Water supply is a core component of irrigation and can be divided into two main dimensions, water quantity, and water quality. As water quality matters more for the choice of a specifiy irrigation technology, it will not be discussed in detail below. Water quantity, however, is a large concern when deciding if a farmer can irrigate. In the natural world, water comes from three sources: rain, surface water (rivers, lakes, reservoirs, etc.), or groundwater (aquifers). 
+
+Precipitation, specifically rainfall, is not technically an irrigation water source as is applied directly to crops without any irrigation system. As a result, rainfall, a free source of crop water, currently sustains roughly 80% of the global cultivated area which produces 60% of the total crop production [@worldwaterassesnentprogramUnitedNationsWorld2009]. Although direct rainfall is the predominant method for watering crops and can nullify the need for any irrigation technology, meeting crop water demand with rainfall can be difficult as rainfall can be extremely varied in both space and time. Spatially, different regions receive different annual amounts of rainfall, with tropical and temperate zones receiving more rainfall than semi-arid or arid regions [@forsethTerrestrialBiomes2010]. However, mean annual rainfall does not show the whole picture, and when deciding whether the amount of precipitation in a region is sufficient to sustain crop growth, it is important to remember that rainfall can heavily vary in seasonality, as well. Wet and dry seasons dictate the boom and bust of vegetation in some tropical and sub-tropical regions [CITATION]. The coincidence of rainfall and crop growing season is integral for farmers as crop water demands must be met during the specific periods of the crop's growing cycle.  One benefit of rain-fed agriculture is that rainwater is naturally of high quality, meaning that it is free of solids and harmful substances that other water sources may have [@WaterQualityCrop2015]. Although, it should be noted that patterns of rainfall are shifting with the effects of climate change. When long-standing climactic patterns change, differences in annual rainfall amounts, duration of the wet and dry seasons, and intensity of rainfall have consequences for both farmers and crops, making planning for a productive growing season more difficult in some areas [@rockstromManagingWaterRainfed2010]. These changes have the potential to incentivize the shift from rainfed agriculture to irrigated. 
+
+Surface water is only applied to crops through an irrigation system, unlike rainwater. Surface water is water that is collected, from precipitation, runoff, and up-welling of groundwater resources, on the surface of the planet (in rivers, lakes, ponds, and dams). Surface water is the most common water source for irrigation as its supply is generally less variable than precipitation and easier to access than groundwater. As a result, 54% of the area available for irrigation is irrigated with surface water [@siebertGroundwaterUseIrrigation2010; @thenkabailGlobalIrrigatedArea2009]. Surface water, due to the fact that it is accumulative, potentially passes through many environments before it is extracted by the farmer and applied to the field, meaning that issues with water quality are more common. Pollution, sediment, and salts must be monitored to ensure that the surface water can be applied to crops and is able to pass through the specific irrigation distribution system [@faoIrrigationManualPlanning2001]. Again, it should be pointed out that since the original source of most surface water is precipitation in some form, it is also susceptible to changes in precipitation patterns due to climate change. 
+
+Groundwater, water that is stored below ground in aquifers, is a collection of water that has infiltrated through the soil over many years. As a source of clean reliable irrigation water, groundwater is unparalleled [@siebertGroundwaterUseIrrigation2010]. The water stored in aquifers is of high quality and much more resistant to seasonal changes in precipitation than surface water. Groundwater's largest issue, with respect to its use as a source of water for irrigation, is access. Multiple methods for groundwater extraction exist but most are more costly than surface water withdrawals. However, in semi-arid or arid regions where surface water may also be seasonal or non-existent, extraction of groundwater for irrigation becomes more economically viable as its use can sustain large populations (E.g.  regions in the middle east). 
+
+Ultimately, rainfall is always the default source for farmers to supply water to their crops, and only when rainfall is not sufficient during necessary parts of the crop growing season, do farmers consider using irrigation to meet the crop water demand. 
+
+#### Topography
+
+
+Steep topography can prevent the implementation of the majority of most common and basic surface irrigation systems, such as furrow (using long channels to water crops) or basin (flooding of field sections) irrigation. Generally, for this type of irrigation to be used field slopes need to have less than a 5% incline, which limits the application of this simple type of irrigation to valleys and flatlands [@faoIrrigationManualPlanning2001]. Other types of irrigation, sprinkler or localized systems, can be utilized in steeper environments, but are often more costly than simple surface irrigation techniques. There are some ingenious examples of farmers working with topography to use simple irrigation methods and adapt to steeper slopes: rice terraces in South East Asia use basin irrigation to cultivate paddy rice on extremely steep slopes [@adachiAgriculturalTechnologiesTerraced2007]. However, in general, steep slopes are rarely irrigated with surface irrigation methods. 
+
+#### Soil
+
+Soil composition, in the context of irrigation, is important because different soils have different capacities to store and infiltrate water, meaning that different types of irrigation systems may be necessary to ensure that crops are able to get the water that they need [@faoGuidelinesDesigningEvaluating1989]. For example, sandy soils retain less water and drain faster, meaning that they must be irrigated more frequently but with less water. In this case, surface irrigation methods that apply large amounts of water to a field at one time may be less suited for these soils [@faoIrrigationWaterManagement1986a]. In addition, as the soil type dictates the infiltration rate of irrigation water and therefore the rate of application, the soil type combined with the specific irrigation method chosen may impose requirements on the consistency and volume of the water supply. For the context of this thesis, soil composition will be largely ignored as the oftentimes soil composition limits the type of irrigation used, not the absence or presence of it. However, it is important to note that as surface irrigation methods, which are more common worldwide, are less suitable for certain soil types (E.g. sandy soils), there may be circumstances in which given a specific soil type, irrigation would be inefficient.  
+
+#### Crops
+Crop type also has the potential to influence the presence/absence of irrigation and the type used as different crops require different amounts of water over the the growing period [@faoIrrigationWaterManagement1986]. Staple crops that need to be irrigated are rarely irrigated with sprinkler or localized (drip) systems as these systems are much more costly than surface irrigation. Sprinkler and localized systems are almost always reserved for fruits and vegetables, so-called cash crops [@faoIrrigationWaterManagement1985]. 
+
+#### Compatibility
+
+Irrigation technologies must be a benefit not a burden to the farmer and the choice to irrigate must fit within the given growing and harvesting needs of a particular crop. Irrigation must not impede the usage of pruning or harvesting machinery [@faoGuidelinesDesigningEvaluating1989]. In addition, the farmers must be able to work with the chosen irrigation technology. Sprinkler and localized systems are more complicated than surface irrigation, however, surface irrigation requires more manual input from the farmer. Surface irrigation is also easier to maintain than other types of irrigation [@faoIrrigationWaterManagement1986a]. This is less of a concern for this thesis, as compatibility issues between crop type, irrigation system, farmer knowledge, and other farm machinery is not the main focus. 
+
+
+#### Economics
+The economics of specific irrigation systems and the choice to irrigate is important for farmers, as even the simplest surface irrigation methods are not without costs. Water, energy, materials, labor, maintenance, and monitoring costs must all be considered when deciding to begin irrigating and which irrigation system to choose [@faoGuidelinesDesigningEvaluating1989]. According to @faoIrrigationManualPlanning2001, for small farms in Sub-Saharan Africa, up to 80% of the costs to develop an irrigation system stems from water resource procurement, such as construction of a dam. In addition, the authors note that the cost for cubic meter of water is increasing in this region as well, putting more economic pressure on the farmers. 
+
+
+#### Social Influences
+However, there are ways to shift the costs of establishing irrigation from the individual farmer to the collective. Grass-roots, bottom-up irrigation cooperatives or schemes may be set up to share the construction, maintenance, and monitoring of shared irrigation and water transportation infrastructure [@faoGuidelinesDesigningEvaluating1989]. @faoGuidelinesDesigningEvaluating1989 note that there are often several levels involved in the organization of irrigation schemes. These include the individual farmers who participate at the field level; the local farmers' collectives who manage operation, maintenance, allocation, and conflicts; the governing body at the local or state level that deals with water distribution and funding. Each actor has different needs, power, and roles ensuring the management of local irrigation. Examples of irrigation schemes are common globally and historically.  
+
+#### External Influences
+Sometimes external factors play a large role in stimulating irrigation expansion. Social trends, governmental programs, and conflicts among others can influence the rate of irrigation expansion at a sub-national, national, or regional level. This type of expansion could be labeled as top-down, as generally there are larger actors pushing or incentivising the construction of irrigation infrastructure, in comparison to the bottom-up dynamic of locally organized irrigation schemes.   
+
+@angelakisIrrigationWorldAgricultural2020 details explicitly some of these trends that have occurred during the last century. In Spain, during the reign of Francisco Franco ^[A fascist dictator who ruled Spain from 1936-1975], the government began a national water development plan to settle small farmers. This campaign created the foundation for Spain's expansive irrigated agricultural system today, the largest irrigated area in the European Union. Another instance that @angelakisIrrigationWorldAgricultural2020 discusses is the sudden overall increase in irrigated area after the Second World War, which is attributed to two aspects: a sudden population increase and developments in technology. The population increase, due to increased birthrates and an extension of life span due to medical advances, created a demand for more food and advances in technology, specifically those that were necessary to optimize pumps needed for pressurized irrigation and water transportation systems. Both of these changes resulted in a rapid global expansion of irrigated area. Other examples exist such as the Green Revolution, or Third Agricultural Revolution ^["A great increase in production of food grains (especially wheat and rice) that resulted from the introduction into developing countries of new, high-yielding varieties, beginning in the mid-20th century" [@britannicaGreenRevolution2020]], also spurred trends of irrigation expansion, particularly in Asia [@angelakisIrrigationWorldAgricultural2020]. @angelakisIrrigationWorldAgricultural2020 points out that large scale irrigation projects often succeed due to governmental involvement and support from changing market patterns. 
+
+\bigskip
+
+
+Ultimately, the drivers of irrigation are complex and interconnected. When quantifying these forces behind an ever changing pattern of irrigation it is easy to generalize, but the reality of irrigation is that there are infinite combinations of conditions, contexts, times, and ambitions that determine the ultimate success or failure of an irrigation project. What worked in one place and time, is not guaranteed to result in a positive outcome years later and worlds apart. The above sections are not exhaustive in their description of the complexity that is involved in the planning, construction, and operation of the majority of irrigation projects, but they are a good start. 
+
+
+\medskip
+In the next section, a literature review of irrigation modeling studies will be described.
+
+
+
+### Irrigation Modeling and Data
+
+Shifting gears, there are few studies that investigate the drivers or irrigation expansion from a modeling perspective. Those that do, do not take in to account historical data or detail expansion rates based on regions or countries. @neumannExploringGlobalIrrigation2011 attempt to model current irrigation patterns based on a variety of biophysical factors (slope, discharge, humidity, ET, evap, pop density, etc) and political factors (democracy, GDP, corruption, political stability) at two different levels, grid cell (5 arc-minute grid cells) and at a country level. However, Neumann's study is only modeling the current irrigation pattern, with no historical perspective. The authors find that the addition of socio-economic information to the model does help improve the explanation the current irrigation pattern, but not only to a small extent. A delay existed, as current patterns are formed from decisions, policies, and economic conditions that occurred years before.
+
+@puyCurrentModelsUnderestimate2020 discuss uncertainties of published projected irrigation expansion patterns by comparing these projections to a simple model that predicts irrigated area as a function of only population size, bounded by available water and land. A simple model was constructed for ease of interpretation, as the main purpose of this study is to discuss uncertainties present in this (seemingly) simple model and investigate how other published projections of irrigation expansion fall within @puyCurrentModelsUnderestimate2020's model's range of uncertainty. @puyCurrentModelsUnderestimate2020's justification for modeling irrigated area as a function of only population size stems from the previous studies showing that population is a variable that encapsulates much more complicated socio-ecological relationships.
+
+
+
+## Introduction to Bayesian Inference
+
+Bayesian inference has some unique features in comparison to other forms of statistical influence which can be generalized into two main components, an improved propagation of uncertainty throughout the modeling process and an ability to include prior information into models, allowing practitioners to incorporate expert knowledge of complex problems. 
+
+### Bayes Theorem
+
+Bayes' theorem is the basis for Bayesian inference. Explained below are the mathematical notation(Eq. \ref{bayesmath}) and the subsequent conceptual form (Eq. \@ref(eq:bayesmath)) of Bayes' Theroem. 
+
+\begin{equation} 
+P(p|D) = \frac{P(D|p) * P(p)}{P(D)}
+(\#eq:bayesmath)
+\end{equation} 
+
+To understand the mathematical representation, some probability concepts need to be introduced. A classic example: Imagine that SARS-CoV-2 is circulating in a population. An individual takes a rapid antigen test and receives a positive test result. However, the media recently has been discussing that rapid antigen tests are less accurate than other types of tests to detect SARS-CoV-2, like the PCR. To be able to calculate the probability that this individual really has SARS-CoV-2 given the positive rapid antigen test it is helpful to calculate the probability of a false positive (or P(Covid|Positive)), some additional information and Bayes' theorem can be used. 
+
+
+- In Berlin at the moment, 100 people are infected with SARS-CoV-2 for every 100,000 people in the population.
+- For people who actually had SARS-CoV-2, rapid antigen tests correctly identified a positive result in 72\% of tests.
+- For people who did not have SARS-CoV-2, rapid antigen tests correctly identified a negative result in 99.5\% of tests.
+
+
+From these statements, a table (\@ref(tab:bayescovid)) can be created.
+
+```{r bayescovid, echo=FALSE}
+x <- c(0.72, 0.28,0.005, 0.995)
+dim(x) <- c(2,2)
+colnames(x) <- c("Covid","No Covid")
+rownames(x) <- c("Positive", "Negative")
+kable(x, longtable = TRUE, booktabs = TRUE)
+```
+
+From then using this table and Equation \ref{bayesmath}, the probability of a false positive can be calculated. 
+
+\begin{equation}
+P(p|D) = \frac{P(D|p) * P(p)}{P(D)} 
+(\#eq:bayesmath2)
+\end{equation}
+
+\begin{equation}
+\text{Posterior} = \frac{\text{Probability of the Data} * \text{Prior}}{\text{Average Probability of the Data}}
+(\#eq:bayesword)
+\end{equation}
+
+
+### The Prior and the Posterior}
+
+
+
+
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************

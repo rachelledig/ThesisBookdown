@@ -1,0 +1,13 @@
+# What is this? {-}
+
+This is a thesis for a Master's Degree in Integrated Natural Resource Management at the Humboldt University of Berlin. This thesis is supervised by Dr. Prof Tobias Krüger and Dr. Prof Christian Schleyer, and advised by Dr. Fabian Stenzel, from the Potsdam Institute for Climate Science. 
+
+## Acknowledgements {-}
+
+To Mom, Dad, Sis and Fi. 
+
+## Dedication {-}
+
+You can have a dedication here if you wish. 
+
+`r if(!knitr:::is_latex_output()) '## Abstract {-}'`
