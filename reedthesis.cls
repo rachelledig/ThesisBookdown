@@ -250,6 +250,16 @@
   \fontsize{12}{14}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
+\newenvironment{abbreviations}{%
+  \if@twocolumn
+    \@restonecoltrue\onecolumn
+  \else
+    \@restonecolfalse
+  \fi
+  \chapter*{Abbreviations}
+  \fontsize{12}{14}\selectfont
+}{\clearpage \if@restonecol\twocolumn\fi}%
+
 \newenvironment{preface}{%
   \if@twocolumn
     \@restonecoltrue\onecolumn
@@ -277,7 +287,7 @@
   \else
     \@restonecolfalse
   \fi
-  \chapter*{Dedication}
+  \chapter*{}
   \fontsize{12}{14}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
@@ -388,6 +398,7 @@ lead to the institution of proceedings against myself. All errors are my own.
 \renewcommand{\title}[1]{\def\@title{#1}}
 %\newcommand{\Shorttitle}[1]{\def\@Shorttitle{#1}}
 \newcommand{\Plainauthor}[1]{\def\@Plainauthor{#1}}
+\newcommand{\Abbreviations}[1]{\def\@Abbreviations{#1}}
 \newcommand{\Abstract}[1]{\def\@Abstract{#1}}
 %\newcommand{\Keywords}[1]{\def\@Keywords{#1}}
 %\newcommand{\Plainkeywords}[1]{\def\@Plainkeywords{#1}}

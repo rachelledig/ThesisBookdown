@@ -1,3 +1,5 @@
+
+
 # What is this? {-}
 
 This is a thesis for a Master's Degree in Integrated Natural Resource Management at the Humboldt University of Berlin. This thesis is supervised by Dr. Prof Tobias Krüger and Dr. Prof Christian Schleyer, and advised by Dr. Fabian Stenzel, from the Potsdam Institute for Climate Science. 
@@ -10,4 +12,22 @@ To Mom, Dad, Sis and Fi.
 
 You can have a dedication here if you wish. 
 
+## Abbreviations {-}
+
+```{r packages, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+```
+
+
+```{r abbreviations, echo=FALSE, warning=FALSE}
+data_frame(
+  Term = c("Irrigation Fraction"
+           ),
+  Abbreviation = c("IF")) %>%
+  arrange(Term) %>% # i.e. alphabetical order by Term
+  kable(booktab = T) # booktab = T gives us a pretty APA-ish table
+```
+
 `r if(!knitr:::is_latex_output()) '## Abstract {-}'`
+

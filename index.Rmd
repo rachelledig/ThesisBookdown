@@ -15,6 +15,8 @@ bday: 'Nov 17, 1991'
 bplace: 'California, USA'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
+header-includes: 
+   - \usepackage{wrapfig}
 
 # This will automatically install the {remotes} package and {thesisdown}
 # Change this to FALSE if you'd like to install them manually on your own.
@@ -23,7 +25,9 @@ params:
   
 # Remove the hashtag to specify which version of output you would like.
 # Can only choose one at a time.
+
 output:
+# COMMENT OUT THE GIFS PLOTLY BLAH BLAHHHH
 #  thesisdown::thesis_pdf: default 
   thesisdown::thesis_gitbook: default         
 #  thesisdown::thesis_word: default
@@ -33,21 +37,21 @@ output:
 # (e.g., abstract, acknowledgements) below or use code similar to line 25-26 
 # for the .RMD files. If you are NOT producing a PDF, delete or silence
 # lines 25-39 in this YAML header.
+abbreviations: '`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims", "00-abbreviations.Rmd")), collapse = "\n  ")`'
 abstract: '`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims", "00-abstract.Rmd")), collapse = "\n  ")`'
 # If you'd rather include the preliminary content in files instead of inline
 # like below, use a command like that for the abstract above.  Note that a tab 
 # is needed on the line after the `|`.
-acknowledgements: | 
-  Thanks everyone
+acknowledgements: '`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims", "00-acknowledgements.Rmd")), collapse = "\n  ")`'
 dedication: |
-  You can have a dedication here if you wish. 
+  To Mom, Dad, Sis, and Fi.
   
 # Specify the location of the bibliography below
 bibliography: references.bib
 # Download your specific csl file and refer to it in the line below.
 link-citations: yes
 colorlinks: no  
-csl: csl/apa.csl
+csl: csl/american-sociological-association.csl
 lot: true
 lof: true
 
@@ -105,22 +109,23 @@ Alternatively, you can put that content in files like 00--prelim.Rmd and
 00-abstract.Rmd like done below.
 -->
 
-
-
-```{r eval=!knitr::is_latex_output(), child=here::here("prelims", "00--prelim.Rmd")}
+```{r eval= !knitr::is_latex_output(), child=here::here("prelims", "00--prelim.Rmd")}
 
 ```
+
+
+
 
 ```{r eval=!knitr::is_latex_output(), child=here::here("prelims", "00-abstract.Rmd")}
 
 ```
 
+
+
+
 <!-- The {.unnumbered} option here means that the introduction will be 
 "Chapter 0." You can also use {-} for no numbers on chapters.
 -->
-
-
-
 
 
 # Introduction {#intro}
@@ -130,7 +135,7 @@ The practice of irrigation, and its subsequent impacts, have far reaching effect
 
 ## Objectives {#objectives}
 
-Ultimately, the agricultural system will continue to demand more water while competing with other sectors over decreasing water availability in the coming years. With this pressure, farmers will aim to be as efficient as possible by increasing their yields which, in certain areas and under certain conditions, can be done by irrigating their fields. Understanding where, when, and why farmers decide to begin irrigating is important to understand water demands now and in the future. Unfortunately, irrigation expansion is seldom studied, with few studies using statistical modeling techniques to investigate the role that biophysical, economic, and political factors play in the spread of irrigation infrastructure in the present. None do so historically. This leads to the first and overarching research question:
+Ultimately, the agricultural system will continue to demand more water while competing with other sectors over decreasing water availability in the coming years. With this pressure, farmers will aim to be as efficient as possible by increasing their yields which, in certain areas and under certain conditions, can be done by irrigating their fields. Understanding where, when, and why farmers decide to begin irrigating is important to understand water demands now and in the future. Unfortunately, irrigation expansion is seldom studied, with few studies using statistical modeling techniques to investigate the role that biophysical, economic, and political factors play in the spread of irrigation infrastructure in the present. None do so historically. This leads to the first and overarching research question: 
 
 
 <center>

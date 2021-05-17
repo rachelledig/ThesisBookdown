@@ -1,0 +1,346 @@
+% This is the Reed College LaTeX thesis template. Most of the work
+% for the document class was done by Sam Noble (SN), as well as this
+% template. Later comments etc. by Ben Salzberg (BTS). Additional
+% restructuring and APA support by Jess Youngberg (JY).
+% Your comments and suggestions are more than welcome; please email
+% them to cus@reed.edu
+%
+% See https://www.reed.edu/cis/help/LaTeX/index.html for help. There are a
+% great bunch of help pages there, with notes on
+% getting started, bibtex, etc. Go there and read it if you're not
+% already familiar with LaTeX.
+%
+% Any line that starts with a percent symbol is a comment.
+% They won't show up in the document, and are useful for notes
+% to yourself and explaining commands.
+% Commenting also removes a line from the document;
+% very handy for troubleshooting problems. -BTS
+
+% As far as I know, this follows the requirements laid out in
+% the 2002-2003 Senior Handbook. Ask a librarian to check the
+% document before binding. -SN
+
+%%
+%% Preamble
+%%
+% \documentclass{<something>} must begin each LaTeX document
+\documentclass[12pt,twoside]{reedthesis}
+% Packages are extensions to the basic LaTeX functions. Whatever you
+% want to typeset, there is probably a package out there for it.
+% Chemistry (chemtex), screenplays, you name it.
+% Check out CTAN to see: https://www.ctan.org/
+%%
+\usepackage{graphicx,latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{longtable,booktabs,setspace}
+\usepackage{chemarr}%% Useful for one reaction arrow, useless if you're not a chem major
+\usepackage[hyphens]{url}
+% Added by CII
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{float}
+\floatplacement{figure}{H}
+% Thanks, @Xyv
+\usepackage{calc}
+% End of CII addition
+\usepackage{rotating}
+
+
+% Next line commented out by CII
+%%% \usepackage{natbib}
+% Comment out the natbib line above and uncomment the following two lines to use the new
+% biblatex-chicago style, for Chicago A. Also make some changes at the end where the
+% bibliography is included.
+%\usepackage{biblatex-chicago}
+%\bibliography{thesis}
+
+
+% Added by CII (Thanks, Hadley!)
+% Use ref for internal links
+\renewcommand{\hyperref}[2][???]{\autoref{#1}}
+\def\chapterautorefname{Chapter}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+% End of CII addition
+
+% Added by CII
+\usepackage{caption}
+\captionsetup{width=5in}
+% End of CII addition
+
+
+
+% \usepackage{times} % other fonts are available like times, bookman, charter, palatino
+
+% Syntax highlighting #22
+
+% To pass between YAML and LaTeX the dollar signs are added by CII
+\title{Bayesian Hierarchial Modeling of Historical Irrigaiton Patterns}
+\author{Rachel Ledig}
+% The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
+\date{July 2021}
+\division{Albrecht Daniel Thaer Institute for Agricultural and Horticultural Sciences}
+\advisor{Dr.~Tobias Krueger}
+\institution{University of Humboldt}
+\degree{Master of Science}
+\bday{Nov 17, 1991}
+\bplace{California, USA}
+\matriculation{602220}
+\email{\href{mailto:ledigrac@hu-berlin.de}{\nolinkurl{ledigrac@hu-berlin.de}}}
+%If you have two advisors for some reason, you can use the following
+% Uncommented out by CII
+\altadvisor{Dr.~Christian Schleyer}
+\supervisor{Dr.~Fabian Stenzel}
+% End of CII addition
+
+%%% Remember to use the correct department!
+\department{Faculty of Life Sciences}
+% if you're writing a thesis in an interdisciplinary major,
+% uncomment the line below and change the text as appropriate.
+% check the Senior Handbook if unsure.
+%\thedivisionof{The Established Interdisciplinary Committee for}
+% if you want the approval page to say "Approved for the Committee",
+% uncomment the next line
+%\approvedforthe{Committee}
+
+% Added by CII
+%%% Copied from knitr
+%% maxwidth is the original width if it's less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+% From {rticles}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+% for Pandoc 2.8 to 2.10.1
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
+% For Pandoc 2.11+
+% As noted by @mirh [2] is needed instead of [3] for 2.12
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc} % for calculating minipage widths
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\renewcommand{\contentsname}{Table of Contents}
+% End of CII addition
+
+\setlength{\parskip}{0pt}
+
+% Added by CII
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\Acknowledgements{
+Adjust your expectations accordingly (\protect\hyperlink{ref-teamStanReferenceManual}{Team n.d.})
+}
+
+\Dedication{
+To Mom, Dad, Sis, and Fi.
+}
+
+\Preface{
+
+}
+
+\Abstract{
+The preface pretty much says it all.
+
+\par
+
+Second paragraph of abstract starts here.
+}
+
+\Abbreviations{
+\begin{tabular}{rp{0.2cm}lp{1cm}rp{0.2cm}l} IF & &  Irrigaion Fraction \\ BS  & &  Bisulfite \\ SDS  & &  Sodium dodecyl sulfate  \\ TMT  & & Tandem mass tags \\ \end{tabular}
+}
+
+	\usepackage{wrapfig}
+% End of CII addition
+%%
+%% End Preamble
+%%
+%
+\begin{document}
+
+% Everything below added by CII
+  \maketitle
+
+\frontmatter % this stuff will be roman-numbered
+\pagestyle{empty} % this removes page numbers from the frontmatter
+  \begin{acknowledgements}
+    Adjust your expectations accordingly (\protect\hyperlink{ref-teamStanReferenceManual}{Team n.d.})
+  \end{acknowledgements}
+
+  \hypersetup{linkcolor=black}
+  \setcounter{secnumdepth}{2}
+  \setcounter{tocdepth}{2}
+  \tableofcontents
+
+
+  \listoftables
+
+  \listoffigures
+  \begin{abbreviations}
+    \begin{tabular}{rp{0.2cm}lp{1cm}rp{0.2cm}l} IF & &  Irrigaion Fraction \\ BS  & &  Bisulfite \\ SDS  & &  Sodium dodecyl sulfate  \\ TMT  & & Tandem mass tags \\ \end{tabular}
+  \end{abbreviations}
+  \begin{abstract}
+    The preface pretty much says it all.
+
+    \par
+
+    Second paragraph of abstract starts here.
+  \end{abstract}
+  \begin{dedication}
+    To Mom, Dad, Sis, and Fi.
+  \end{dedication}
+\mainmatter % here the regular arabic numbering starts
+\pagestyle{fancyplain} % turns page numbering back on
+
+\hypertarget{this-will-automatically-install-the-remotes-package-and-thesisdown}{%
+\chapter{This will automatically install the \{remotes\} package and \{thesisdown\}}\label{this-will-automatically-install-the-remotes-package-and-thesisdown}}
+
+Placeholder
+
+\hypertarget{objectives}{%
+\section{Objectives}\label{objectives}}
+
+\hypertarget{Theory}{%
+\chapter{Theoretical Basis}\label{Theory}}
+
+Placeholder
+
+\hypertarget{lit}{%
+\section{Literature}\label{lit}}
+
+\hypertarget{drivers}{%
+\subsection{Drivers of Irrigation Expansion}\label{drivers}}
+
+\hypertarget{water}{%
+\subsubsection{Water}\label{water}}
+
+\hypertarget{topo}{%
+\subsubsection{Topography}\label{topo}}
+
+\hypertarget{soil}{%
+\subsubsection{Soil}\label{soil}}
+
+\hypertarget{crops}{%
+\subsubsection{Crops}\label{crops}}
+
+\hypertarget{combatibility}{%
+\subsubsection{Compatibility}\label{combatibility}}
+
+\hypertarget{econ}{%
+\subsubsection{Economics}\label{econ}}
+
+\hypertarget{socinf}{%
+\subsubsection{Social Influences}\label{socinf}}
+
+\hypertarget{extinf}{%
+\subsubsection{External Influences}\label{extinf}}
+
+\hypertarget{irrmodslit}{%
+\subsection{Studies of Irrigation Expansion}\label{irrmodslit}}
+
+\hypertarget{bayesintro}{%
+\section{Introduction to Bayesian Inference}\label{bayesintro}}
+
+\hypertarget{bayesthe}{%
+\subsection{Bayes Theorem}\label{bayesthe}}
+
+\hypertarget{priorpost}{%
+\subsection{The Prior and the Posterior\}}\label{priorpost}}
+
+\hypertarget{datavar}{%
+\chapter{Data and Variables}\label{datavar}}
+
+\hypertarget{global-historical-irrigation-data-set}{%
+\section{Global Historical Irrigation Data Set}\label{global-historical-irrigation-data-set}}
+
+Data for the target variable was collected from \protect\hyperlink{ref-siebertGlobalDataSet2015}{Siebert et al.} (\protect\hyperlink{ref-siebertGlobalDataSet2015}{2015}), who developed the Global Historical Irrigation Data Set or HID. This data set details the hectares of area equipped for irrigation (AEI) per grid cell at a 5 arcmin resolution\footnote{0.083° Longitude by 0.083° Latitude, or at the equator, a 9.3km by 9.3km grid cell} over a period of 105 years, from 1900 to 2005. By documenting global and historical irrigation patterns, \protect\hyperlink{ref-siebertGlobalDataSet2015}{Siebert et al.} (\protect\hyperlink{ref-siebertGlobalDataSet2015}{2015}) hoped to create a better understanding of the evolution of said patterns. It is worth noting that the dataset provided in \protect\hyperlink{ref-siebertGlobalDataSet2015}{Siebert et al.} (\protect\hyperlink{ref-siebertGlobalDataSet2015}{2015}) documents area equipped for irrigation, meaning area that is equipped with infrastructure to irrigate crops but not \emph{necessarily} irrigated. In addition, rainwater harvesting\footnote{The act of harvesting rainwater during rain and then later applying it to crops.} is also not included in the summation of area equipped for irrigation.
+
+To amass this data \protect\hyperlink{ref-siebertGlobalDataSet2015}{Siebert et al.} (\protect\hyperlink{ref-siebertGlobalDataSet2015}{2015}) used a variety of sources to collect national and subnational statistics including FAOSTAT (\protect\hyperlink{ref-faoFAOSTAT2021}{FAO 2021b}), EuroStat (\protect\hyperlink{ref-europeancomissionEurostatDatabase2021}{Comission 2021}), and Aquastat (\protect\hyperlink{ref-faoAQUASTAT2021}{FAO 2021a}) along with other less collected sources like census data and statistical yearbooks. Data was recorded for 10 year timesteps until 1980 and five year timesteps until the termination of the study period in 2005. Data for the period prior to 1950 and the year 2005 has higher levels of uncertainty in the measurements when compared to the data between, as irrigation data from international organizations (e.g.~FAO) were unavailable. After collection the data was harmonized and downscaled to a 5 arcmin resolution. Special care was taken to ensure that high resolution data (at a 5 arcmin resolution) could be accurately summed to the subnational level, ensuring accuracy at different resolutions. In addition, the authors note that validation of this dataset was not possible due to the fact that all available data was used as input to create the HID.
+
+\hypertarget{irrfrac}{%
+\subsection{Target Variable}\label{irrfrac}}
+
+\hypertarget{methods}{%
+\chapter{Methods}\label{methods}}
+
+\hypertarget{results}{%
+\chapter{Results}\label{results}}
+
+\hypertarget{discuss}{%
+\chapter{Discussion}\label{discuss}}
+
+\hypertarget{conclusion}{%
+\chapter{Conclusion}\label{conclusion}}
+
+\appendix
+
+\hypertarget{the-first-appendix}{%
+\chapter{The First Appendix}\label{the-first-appendix}}
+
+This first appendix includes all of the R chunks of code that were hidden throughout the document (using the \texttt{include\ =\ FALSE} chunk tag) to help with readibility and/or setup.
+
+\textbf{In the main Rmd file}
+
+\textbf{In Chapter \ref{ref-labels}:}
+
+\hypertarget{the-second-appendix-for-fun}{%
+\chapter{The Second Appendix, for Fun}\label{the-second-appendix-for-fun}}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+Placeholder
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-europeancomissionEurostatDatabase2021}{}%
+Comission, European. 2021. {``Eurostat {Database}.''} Retrieved May 15, 2021 (\url{https://ec.europa.eu/eurostat/data/database}).
+
+\leavevmode\hypertarget{ref-faoAQUASTAT2021}{}%
+FAO. 2021a. {``{AQUASTAT}.''} Retrieved May 15, 2021 (\url{http://www.fao.org/aquastat/en/databases/}).
+
+\leavevmode\hypertarget{ref-faoFAOSTAT2021}{}%
+FAO. 2021b. {``{FAOSTAT}.''} Retrieved May 15, 2021 (\url{http://www.fao.org/faostat/en/\#data}).
+
+\leavevmode\hypertarget{ref-siebertGlobalDataSet2015}{}%
+Siebert, Stefan, Matti Kummu, Miina Porkka, Petra Doell, Navin Ramankutty, and Bridget Scanlon. 2015. {``A Global Data Set of the Extent of Irrigated Land from 1900 to 2005.''} \emph{Hydrology and Earth System Sciences} 19:1521--45. doi: \href{https://doi.org/10.5194/hess-19-1521-2015}{10.5194/hess-19-1521-2015}.
+
+\leavevmode\hypertarget{ref-teamStanReferenceManual}{}%
+Team, Stan Development. n.d. \emph{Stan {Reference Manual}}.
+
+\end{CSLReferences}
+
+% Index?
+
+\end{document}

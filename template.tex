@@ -186,6 +186,10 @@ $preface$
 $abstract$
 }
 
+\Abbreviations{
+$abbreviations$
+}
+
 $for(header-includes)$
 	$header-includes$
 $endfor$
@@ -231,6 +235,12 @@ $endif$
 
 $if(lof)$
   \listoffigures
+$endif$
+
+$if(abbreviations)$
+  \begin{abbreviations}
+    $abbreviations$
+  \end{abbreviations}
 $endif$
 
 $if(abstract)$
