@@ -17,6 +17,7 @@ knit: bookdown::render_book
 site: bookdown::bookdown_site
 header-includes: 
    - \usepackage{wrapfig}
+always_allow_html: true
 
 # This will automatically install the {remotes} package and {thesisdown}
 # Change this to FALSE if you'd like to install them manually on your own.
@@ -29,8 +30,8 @@ params:
 output:
 # COMMENT OUT THE GIFS PLOTLY BLAH BLAHHHH
 #  thesisdown::thesis_pdf: default 
-  thesisdown::thesis_gitbook: default         
-#  thesisdown::thesis_word: default
+#  thesisdown::thesis_gitbook: default         
+  thesisdown::thesis_word: default
 #  thesisdown::thesis_epub: default
 
 # If you are creating a PDF you'll need to write your preliminary content 
@@ -54,9 +55,9 @@ colorlinks: no
 csl: csl/american-sociological-association.csl
 lot: true
 lof: true
-
 ---
 
+```{=html}
 <!--
 Above is the YAML (YAML Ain't Markup Language) header that includes a lot of 
 metadata used to produce the document.  Be careful with spacing in this header!
@@ -69,7 +70,7 @@ If you'd like to include a comment that won't be produced in your resulting file
 
 If you receive a duplicate label error after knitting, make sure to delete the index.Rmd file and then knit again.
 -->
-
+```
 ```{r include_packages, include=FALSE}
 # This chunk ensures that the thesisdown package is
 # installed and loaded. This thesisdown package includes
@@ -102,65 +103,53 @@ library(thesisdown)
 options(width = 70)
 ```
 
+```{=html}
 <!--
 The acknowledgments, preface, dedication, and abstract are added into the PDF
 version automatically by inputting them in the YAML at the top of this file.
 Alternatively, you can put that content in files like 00--prelim.Rmd and
 00-abstract.Rmd like done below.
 -->
-
+```
 ```{r eval= !knitr::is_latex_output(), child=here::here("prelims", "00--prelim.Rmd")}
 
 ```
-
-
-
 
 ```{r eval=!knitr::is_latex_output(), child=here::here("prelims", "00-abstract.Rmd")}
 
 ```
 
-
-
-
+```{=html}
 <!-- The {.unnumbered} option here means that the introduction will be 
 "Chapter 0." You can also use {-} for no numbers on chapters.
 -->
-
-
+```
 # Introduction {#intro}
 
-The practice of irrigation, and its subsequent impacts, have far reaching effects for the global economy, food and water supply, and environment. Irrigated land accounts for 20% of the global cultivated land area which derives 40% of the global food supply [@neumannExploringGlobalIrrigation2011; @portmannMIRCA2000GlobalMonthly2010], 70% of water withdrawls from ground water aquifers are used for irrigation [@faoStateWorldLand2013], and 
-
+The practice of irrigation, and its subsequent impacts, have far reaching effects for the global economy, food and water supply, and environment. Irrigated land accounts for 20% of the global cultivated land area which derives 40% of the global food supply [@neumannExploringGlobalIrrigation2011, @portmannMIRCA2000GlobalMonthly2010a], 70% of water withdrawls from ground water aquifers are used for irrigation [@faoStateWorldLand2011], and
 
 ## Objectives {#objectives}
 
-Ultimately, the agricultural system will continue to demand more water while competing with other sectors over decreasing water availability in the coming years. With this pressure, farmers will aim to be as efficient as possible by increasing their yields which, in certain areas and under certain conditions, can be done by irrigating their fields. Understanding where, when, and why farmers decide to begin irrigating is important to understand water demands now and in the future. Unfortunately, irrigation expansion is seldom studied, with few studies using statistical modeling techniques to investigate the role that biophysical, economic, and political factors play in the spread of irrigation infrastructure in the present. None do so historically. This leads to the first and overarching research question: 
-
+Ultimately, the agricultural system will continue to demand more water while competing with other sectors over decreasing water availability in the coming years. With this pressure, farmers will aim to be as efficient as possible by increasing their yields which, in certain areas and under certain conditions, can be done by irrigating their fields. Understanding where, when, and why farmers decide to begin irrigating is important to understand water demands now and in the future. Unfortunately, irrigation expansion is seldom studied, with few studies using statistical modeling techniques to investigate the role that biophysical, economic, and political factors play in the spread of irrigation infrastructure in the present. None do so historically. This leads to the first and overarching research question:
 
 <center>
+
 *Which factors (drivers) have influenced the expansion of irrigation in both time and space over the past 100 years?*
+
 </center>
 
-
-
-
-By understanding under which conditions irrigation infrastructure is built could be coupled with projections of future climate and economic scenarios, allowing us to get a better idea of scales of agricultural production, land use, and water needs in the coming years. In order to eventually extrapolate to the future, predictive accuracy needs to be addressed. This can be done by separating data into training and testing datasets, model tuning, and error estimation. 
-
+By understanding under which conditions irrigation infrastructure is built could be coupled with projections of future climate and economic scenarios, allowing us to get a better idea of scales of agricultural production, land use, and water needs in the coming years. In order to eventually extrapolate to the future, predictive accuracy needs to be addressed. This can be done by separating data into training and testing datasets, model tuning, and error estimation.
 
 Several other questions smaller questions arise in regard to drivers of expansion which are interesting to investigate. Such as:
 
-- Which has a larger influence on irrigation expansion patterns, biophysical or socio-economic factors?
+-   Which has a larger influence on irrigation expansion patterns, biophysical or socio-economic factors?
 
-- Do rates of irrigation expansion differ depending on crop type? 
+-   Do rates of irrigation expansion differ depending on crop type?
 
-Both of these questions have interesting policy implications, should large trends be present in the model and analysis. 
+Both of these questions have interesting policy implications, should large trends be present in the model and analysis.
 
 The time series component of this data set also gives rise to some interesting questions.
 
-- Expansion rates of total irrigated area differ temporally, what could be the drivers for this difference? 
+-   Expansion rates of total irrigated area differ temporally, what could be the drivers for this difference?
 
-- Is there a temporal delay in irrigation expansion based on the influence of certain drivers, and if so how much?
-
-
-
+-   Is there a temporal delay in irrigation expansion based on the influence of certain drivers, and if so how much?

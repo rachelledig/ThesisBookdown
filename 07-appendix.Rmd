@@ -1,24 +1,114 @@
 `r if(knitr:::is_latex_output()) '\\appendix'`
 
-`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
 
+# Appendix
 
-# The First Appendix
+## Proof of Bayes' Theorem for Two Hypothesis from @hackingIntroductionProbabilityInductive2001 {#bayesproof}
 
-<!--
-If you feel it necessary to include an appendix, it goes here.
--->
+Definition of **Conditional Probability** taken from @hackingIntroductionProbabilityInductive2001 beginning on p.49:
 
-This first appendix includes all of the R chunks of code that were hidden throughout the document (using the `include = FALSE` chunk tag) to help with readibility and/or setup.
+```{=tex}
+\begin{equation}
+\text{Pr(A|B)}= \frac{\text{Pr(A,B)}}{\text{Pr(B)}} 
+(\#eq:conditionalprob)
+\end{equation}
+```
+Implying that for $\text{Pr(B) > 0}$,
 
-**In the main Rmd file**
+```{=tex}
+\begin{equation}
+\text{Pr(A|B)} * \text{Pr(B)} = \text{Pr(A,B)}  
+(\#eq:conditionalprobproof1)
+\end{equation}
+```
+Knowing that,
 
-```{r ref.label='include_packages', results='hide', echo = TRUE}
+```{=tex}
+\begin{equation}
+\text{Pr(B,A)} = \text{Pr(A,B)} 
+(\#eq:conditionalprobproof2)
+\end{equation}
+```
+Therefore,
+
+```{=tex}
+\begin{equation}
+\text{Pr(B|A)} * \text{Pr(A)} = \text{Pr(A|B)} * \text{Pr(B)} 
+(\#eq:conditionalprobproof3)
+\end{equation}
+```
+Dividing by $\text{P(A)}$, gives Bayes' Theorem (equivalent to Equation \@ref(eq:bayesmath))
+
+```{=tex}
+\begin{equation}
+\text{Pr(B|A)}= \frac{\text{Pr(A|B) * Pr(B)}}{\text{Pr(A)}} 
+(\#eq:bayes)
+\end{equation}
+```
+Assuming that $0 < \text{Pr(B)} < 1$, the equation for **Total Probability** taken from @hackingIntroductionProbabilityInductive2001 [p.59] can be written:
+
+```{=tex}
+\begin{equation}
+\text{Pr(A)} = \text{Pr(A|B)} * \text{Pr(B)} + \text{Pr(A|Not B)} * \text{Pr(Not B)}
+(\#eq:totalprob)
+\end{equation}
+```
+Substituting Equation \@ref(eq:totalprob) into Equation \@ref(eq:bayes), giving rise to the Equation \@ref(eq:twohypothesis), the base equation used for the basis of Equation \@ref(eq:bayesspecial),
+
+```{=tex}
+\begin{equation}
+\text{Pr(B|A)}= \frac{\text{Pr(A|B) * Pr(B)}}{\text{Pr(A|B)} * \text{Pr(B)} + \text{Pr(A|Not B)} * \text{Pr(Not B)}} 
+(\#eq:twohypothesis)
+\end{equation}
+```
+## Digression: Covid Rapid Antigen Tests {#covidex}
+
+Imagine (you don't have to) that SARS-CoV-2 is circulating in Berlin. An individual takes a rapid antigen test and receives a positive test result. However, the media recently has been discussing that rapid antigen tests are less accurate than other types of tests to detect SARS-CoV-2, like the PCR. The individual thinks that perhaps the test was wrong, meaning that this person received a "false positive" and doesn't actually have Covid even though the test came back positive. Data can be gathered, a positive test result (the $y$), and a hypothesis can be constructed, the individual doesn't have Covid (the $\theta$). Substituting this in to Bayes' theorem, the probability that this individual doesn't have Covid even though the test came back positive can be calculated (remember, $p(\theta|y)$) using Equation \@ref(eq:covidword).
+
+```{=tex}
+\begin{equation}
+\text{p(No Covid|Pos)} = \frac{\text{p(Pos|No Covid)} * \text{p(No Covid)}}{\text{p(Pos)}}
+(\#eq:covidword)
+\end{equation}
+```
+Some extra information is necessary to fill in the missing pieces,
+
+-   According to @tagesspiegelCoronavirusKarteDeutschlandweiteFallzahlen2021, 200 people are infected with SARS-CoV-2 for every 100,000 people in Berlin, also known as probability of having Covid ($\text{P(Covid)} = 0.002$). Since our hypothesis is that the individual *doesn't* have Covid, we can calculate $\text{P(No Covid)} = 0.998$. This represents our previous knowledge about how many people don't have Covid and is the prior ($p(\theta)$) in Bayes' theorem.
+
+-   My local [Covid Test Center](https://schnell.coronatest.de/?lang=en) claims that their rapid antigen tests have a sensitivity of 96% and a specificity of 99%. Sensitivity is the ability to correctly identify those who have the disease and specificity is the ability to correctly identify those that do not have the disease.
+
+    -   So sensitivity represents the probability of testing positive when (or *given*) you have Covid, $\text{P(Positive|Covid)} = 0.96$. Conversely, the $\text{P(Negitive|Covid)} = 0.04$
+    -   Specificity represents the probability of testing negative given you don't have Covid $\text{P(Negative|No Covid)} = 0.99$. Then, $\text{P(Positive|No Covid)} = 0.01$. This is the probability of the data, or the likelihood $(p(y|\theta))$.
+
+From these statements, Table \@ref(tab:makingcovid) can be created .
+
+```{r makingcovid, echo=FALSE, fig.pos='H'}
+x <- c("0.96", "0.04", "0.01", "0.99")
+dim(x) <- c(2,2)
+colnames(x) <- c("Covid (p = 0.002)", "No Covid (p = 0.998)")
+rownames(x) <- c("Positive", "Negative")
+kable(x, booktabs = TRUE, caption="\\label{tab:makingcovid}Probabilities for incidence of Covid and rapid antigen test sensitivity.") %>% 
+  kable_styling(full_width = F, latex_options = "HOLD_position") 
 ```
 
-**In Chapter \@ref(ref-labels):**
+Last thing that needs to be discussed is the denominator, $\text{p(Positive)}$ or $p(y)$. There is a manipulation of Bayes's rule using the law of Conditional Probability detailed in @hackingIntroductionProbabilityInductive2001 that can be used in cases where there are only two outcomes (two $\theta$s ). This can be applied here as is this the case, i.e. the person either has or doesn't have Covid. Equation @ref(eq:bayesspecial) details @hackingIntroductionProbabilityInductive2001 for this example. Proof for @ref(eq:bayesspecial) can be seen in \@ref(bayesproof).
 
-```{r ref.label='include_packages_2', results='hide', echo = TRUE}
+```{=tex}
+\begin{equation}
+P(\text{No Covid|Pos}) = \frac{\text{P(Pos|No Covid)} * \text{P(No Covid)}}{\text{P(Pos|No Covid)} * \text{P(No Covid)} + \text{P(Pos|Covid)} * \text{P(Covid)}}
+(\#eq:bayesspecial)
+\end{equation}
 ```
+From then using Table \@ref(tab:makingcovid) and Equation \@ref(eq:bayesspecial), the probability of not having Covid given a positive test result can be calculated.
 
-# The Second Appendix, for Fun
+```{=tex}
+\begin{align}
+P(\text{No Covid|Pos}) &= \frac{0.01 * 0.998}{0.01 * 0.998 + 0.96 * 0.002} \\
+P(\text{No Covid|Pos}) &= 0.84
+(\#eq:bayesmath2)
+\end{align}
+```
+So, what does this mean? This $\text{P(No Covid|Pos)} = 0.84$ is the probability of not having Covid given a positive test result. This is quite high, so chances are even though the test came back positive, this individual does not have Covid. Perhaps we should take another rapid test or a PCR.
+
+## 
