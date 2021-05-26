@@ -187,11 +187,83 @@ Effectively, Equation \@ref(eq:proppost) means that the posterior is proportiona
 
 ### The Prior {#priorpost}
 
-Specification of the prior distribution is not a trivial task, as the prior attempts to encapsulate the previous knowledge of a specific parameter and has impacts on the posterior distribution. The determination of the prior should be done before seeing the data and serves two main functions, communicating previous scientific or common knowledge about a parameters distribution and/or helping the the model learn more efficiently [@mcelreathStatisticalRethinkingBayesian2020]. Often times flat priors are used initally and improved upon iteratively. Effects of the prior on the posterior can be seen in Figure
+Specification of the prior distribution is not a trivial task, as the prior attempts to encapsulate the previous knowledge of a specific parameter and has impacts on the posterior distribution. The determination of the prior should be done before seeing the data and serves two main functions, communicating previous scientific or common knowledge about a parameters distribution and/or helping the the model learn more efficiently [@mcelreathStatisticalRethinkingBayesian2020]. Often times flat priors are used initially and improved upon iteratively. Effects of the prior on the posterior can be seen in Figure \@ref(fig:prioreffects) which is adapted from @mcelreathStatisticalRethinkingBayesian2020[p. 38] and @kurzStatisticalRethinkingBrms2019[sec. 2.4].
 
-Discussion of weakly informative priors
+```{r}
+sequence_length <- 1e3
 
-Normalization of priors?
+d <-
+  tibble(probability = seq(from = 0, to = 1, length.out = sequence_length)) %>% 
+  expand(probability, row = c("flat", "beta", "exponential")) %>% 
+  arrange(row, probability) %>% 
+  mutate(prior = ifelse(row == "flat", 1,
+                        ifelse(row == "beta", dbeta(probability, shape1 = 0.75, shape2 = 0.75),
+                               dexp(probability, rate = 5))),
+         likelihood = dnorm(probability, mean = 0.5, sd = 0.25)) %>% 
+  group_by(row) %>% 
+  mutate(posterior = prior * likelihood) %>% 
+  gather(key, value, -probability, -row) %>% 
+  ungroup() %>% 
+  mutate(key = factor(key, levels = c("prior", "likelihood", "posterior")),
+         row = factor(row, levels = c("flat", "beta", "exponential")))
+```
+
+```{r prioreffects, warning=FALSE, message=FALSE, echo=FALSE, fig.cap= "Effects of the prior distrubution on the unnormalized posterior with a Normal(0.5, 0.25) likelihood. First row: Uniform prior, Second row: Beta(a = 0.75, b = 0.75) prior, Third Row: Exponential prior. Prior and likelihood are multiplied together to create the unnormalized posterior seen in the third column."}
+p1 <-
+  d %>%
+  filter(key == "prior") %>% 
+  ggplot(aes(x = probability, y = value)) +
+  geom_line() +
+  scale_x_continuous(NULL, breaks = c(0, .5, 1)) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  labs(subtitle = "prior") +
+  theme(panel.grid       = element_blank(),
+        strip.background = element_blank(),
+        strip.text       = element_blank()) +
+  facet_wrap(row ~ ., scales = "free_y", ncol = 1)
+
+p2 <-
+  d %>%
+  filter(key == "likelihood") %>% 
+  ggplot(aes(x = probability, y = value)) +
+  geom_line() +
+  scale_x_continuous(NULL, breaks = c(0, .5, 1)) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  labs(subtitle = "likelihood") +
+  theme(panel.grid       = element_blank(),
+        strip.background = element_blank(),
+        strip.text       = element_blank()) +
+  facet_wrap(row ~ ., scales = "free_y", ncol = 1)
+
+p3 <-
+  d %>%
+  filter(key == "posterior") %>% 
+  ggplot(aes(x = probability, y = value)) +
+  geom_line() +
+  scale_x_continuous(NULL, breaks = c(0, .5, 1)) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  labs(subtitle = "posterior") +
+  theme(panel.grid       = element_blank(),
+        strip.background = element_blank(),
+        strip.text       = element_blank()) +
+  facet_wrap(row ~ ., scales = "free_y", ncol = 1)
+
+library(gridExtra)
+
+grid.arrange(p1, p2, p3, ncol = 3)
+```
+
+There are several different types of priors used when discussing Bayesian inference. Some of the most common types of priors discussed are [@gelmanBayesianDataAnalysis2013]:
+
+-   **Proper priors,** which integrate to 1 and **improper priors,** that don't. The fact that a prior (or any probability distribution for that matter) integrates to 1 is important not only computationally, as it makes it easier to manipulate and solve analytically, but an improper prior violates the assumption that probability distributions integrate to 1.
+
+-   **Informative priors** communicate information about a given parameter's distribution, **non-informative priors** do not. A classic example of a non informative prior is a flat or uniform prior (seen in the row 1 of Section \@ref(fig:prioreffects)) as it assumes that all probability values are equally likely.
+
+-   To discuss the amount of information communicated via the prior distribution to the posterior, terms such as **Strongly Informative Priors** or **Weakly Informative Priors** can be used. Weakly informative priors are informative (i.e. they do contain information about the distribution of a given parameter) but serve to regularize the posterior only by setting bounds within which the posterior can vary its shape, meaning that they are not aiming to completely describe the distribution of a parameter. In addition, these priors are easily overwhelmed if the amount of data is large. Strongly informative priors, conversely, heavily influence the posterior distribution and are more likely to overwhelm the data.
+
+Ultimately, the goal when specifying the prior is to have a weakly informative prior for each given parameter. This ensures that general scientific knowledge about the distribution of a parameter is communicated but if large amounts of data exist, the prior gives way to the overwhelming evidence of the likelihood.
+
+Weakly informative priors also serve to
 
 ### Model Comparison Techniques
 

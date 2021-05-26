@@ -8,7 +8,7 @@ bibliography: references.bib
 
 ### Global Historical Irrigation Data Set {#HID}
 
-Data for the target variable was collected from @siebertGlobalDataSet2015, who developed the Global Historical Irrigation Data Set or HID. This data set details the hectares of area equipped for irrigation (AEI) per grid cell at a 5 arcmin resolution [^1] over a period of 105 years, from 1900 to 2005. By documenting global and historical irrigation patterns, @siebertGlobalDataSet2015 hoped to create a better understanding of the evolution of said patterns. It is worth noting that the dataset provided in @siebertGlobalDataSet2015 documents area equipped for irrigation, meaning area that is equipped with infrastructure to irrigate crops but not *necessarily* irrigated. In addition, rainwater harvesting [^2] is also not included in the summation of area equipped for irrigation. @
+Data for the target variable was collected from @siebertGlobalDataSet2015, who developed the Global Historical Irrigation Data Set or HID. This data set details the hectares of area equipped for irrigation (AEI) per grid cell at a 5 arcmin resolution [^1] over a period of 105 years, from 1900 to 2005. By documenting global and historical irrigation patterns, @siebertGlobalDataSet2015 hoped to create a better understanding of the evolution of said patterns. It is worth noting that the dataset provided in @siebertGlobalDataSet2015 documents area equipped for irrigation, meaning area that is equipped with infrastructure to irrigate crops but not *necessarily* irrigated. In addition, rainwater harvesting [^2] is also not included in the summation of area equipped for irrigation. \@
 
 [^1]: 0.083° Longitude by 0.083° Latitude, or at the equator, a 9.3km by 9.3km grid cell
 

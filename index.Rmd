@@ -30,8 +30,21 @@ params:
 output:
 # COMMENT OUT THE GIFS PLOTLY BLAH BLAHHHH
 #  thesisdown::thesis_pdf: default 
-#  thesisdown::thesis_gitbook: default         
-  thesisdown::thesis_word: default
+  thesisdown::thesis_gitbook:     
+    css: 
+    anchor_sections: false
+    config: 
+      fontsettings:
+        theme: 
+        family: 
+        size:
+      sharing:
+        facebook: no
+        github: yes
+        twitter: no
+        linkedin: no
+        all: ['twitter', 'linkedin', 'facebook']
+#  thesisdown::thesis_word: default
 #  thesisdown::thesis_epub: default
 
 # If you are creating a PDF you'll need to write your preliminary content 
@@ -52,7 +65,7 @@ bibliography: references.bib
 # Download your specific csl file and refer to it in the line below.
 link-citations: yes
 colorlinks: no  
-csl: csl/american-sociological-association.csl
+csl: csl/apa.csl
 lot: true
 lof: true
 ---
