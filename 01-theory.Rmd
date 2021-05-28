@@ -185,11 +185,11 @@ p(\theta|y) \propto p(y|\theta) * p(\theta)
 ```
 Effectively, Equation \@ref(eq:proppost) means that the posterior is proportional to the likelihood, $p(y|\theta)$, multiplied by the prior, $p(\theta)$. Its not necessary in most contexts to normalize using $p(y)$, proportionality works just fine.
 
-### The Prior {#priorpost}
+#### The Prior
 
-Specification of the prior distribution is not a trivial task, as the prior attempts to encapsulate the previous knowledge of a specific parameter and has impacts on the posterior distribution. The determination of the prior should be done before seeing the data and serves two main functions, communicating previous scientific or common knowledge about a parameters distribution and/or helping the the model learn more efficiently [@mcelreathStatisticalRethinkingBayesian2020]. Often times flat priors are used initially and improved upon iteratively. Effects of the prior on the posterior can be seen in Figure \@ref(fig:prioreffects) which is adapted from @mcelreathStatisticalRethinkingBayesian2020[p. 38] and @kurzStatisticalRethinkingBrms2019[sec. 2.4].
+Specification of the prior distribution is not a trivial task, as the prior attempts to encapsulate the previous knowledge of a specific parameter and has impacts on the posterior distribution. The determination of the prior should be done before seeing the data and serves two main functions, communicating previous scientific or common knowledge about a parameters distribution and/or helping the the model learn more efficiently [@mcelreathStatisticalRethinkingBayesian2020]. Often times flat priors are used initially and improved upon iteratively. Effects of the prior on the posterior can be seen in Figure \@ref(fig:prioreffects) which is adapted from @mcelreathStatisticalRethinkingBayesian2020 [p. 38] and @kurzStatisticalRethinkingBrms2019 [sec. 2.4].
 
-```{r}
+```{r warning=FALSE, message=FALSE, echo=FALSE}
 sequence_length <- 1e3
 
 d <-
@@ -257,14 +257,20 @@ There are several different types of priors used when discussing Bayesian infere
 
 -   **Proper priors,** which integrate to 1 and **improper priors,** that don't. The fact that a prior (or any probability distribution for that matter) integrates to 1 is important not only computationally, as it makes it easier to manipulate and solve analytically, but an improper prior violates the assumption that probability distributions integrate to 1.
 
--   **Informative priors** communicate information about a given parameter's distribution, **non-informative priors** do not. A classic example of a non informative prior is a flat or uniform prior (seen in the row 1 of Section \@ref(fig:prioreffects)) as it assumes that all probability values are equally likely.
+-   **Informative priors** communicate information about a given parameter's distribution, **non-informative priors** do not. A classic example of a non informative prior is a flat or uniform prior (seen in the row 1 of Section \@ref(fig:prioreffects)) as it assumes that all probability values are equally likely which is almost never the case.
 
 -   To discuss the amount of information communicated via the prior distribution to the posterior, terms such as **Strongly Informative Priors** or **Weakly Informative Priors** can be used. Weakly informative priors are informative (i.e. they do contain information about the distribution of a given parameter) but serve to regularize the posterior only by setting bounds within which the posterior can vary its shape, meaning that they are not aiming to completely describe the distribution of a parameter. In addition, these priors are easily overwhelmed if the amount of data is large. Strongly informative priors, conversely, heavily influence the posterior distribution and are more likely to overwhelm the data.
 
-Ultimately, the goal when specifying the prior is to have a weakly informative prior for each given parameter. This ensures that general scientific knowledge about the distribution of a parameter is communicated but if large amounts of data exist, the prior gives way to the overwhelming evidence of the likelihood.
+The goal when specifying the prior is to have at least a weakly informative prior for each given parameter. This ensures that general scientific knowledge about the distribution of a parameter is communicated but if large amounts of data exist, the prior gives way to the overwhelming evidence of the likelihood [@gelmanPriorChoiceRecommendations2020]. Manipulation of the prior can be useful from can be used to solve or diagnose issues, given certain contexts and questions. However, it is important to note that "bad" (less suitable) priors can come with some unintended consequences such as allowing for more unstable predictions due sampling difficulties from bad geometry of the posterior (when using tools such as STAN [@standevelopmentteamRStanInterfaceStan2020]) or entertaining predictions that are not possible given the problem (ex. predicting negitive values when logically only positive ones exist) [@mcelreathStatisticalRethinkingBayesian2020[sec. 5.1]].
 
-Weakly informative priors also serve to
+@gelmanPriorCanOften2017 and @gelmanPriorChoiceRecommendations2020 discuss appropriate prior choice and emphasize that the identification of weak or strong priors is not possible without knowledge of the likelihood, which violates the idea that a prior should be constructed *a priori,* or before having any notion of the data or even the data generating process. As mentioned in @gelmanPriorCanOften2017 [sec. 1.2], this may be the most ideal way to construct a prior but in reality practical concerns such as model convergence, unknown parameters, knowledge of the modeler, etc. make this task impossible or very difficult. Hence, a division is created that separates Bayesian issues into two camps, those can/are willing to build a prior in a *subjective* way by incorporating expert/scientific knowledge into the prior *before* seeing the data or setting up the model, and those that "break" this rule by using some knowledge about the likelihood and data to construct their prior.
+
+Ultimately, prior specification for Bayesian inference is necessary but is often times more of an art than a science. Iterative processes help with choosing the prior and seeing its effect on the posterior for a given question, dataset, and model. The overall aim is to balance practical and theoretical concerns when choosing most the suitable prior. Currently, a large area of research focuses solely on prior specification and usage within a Bayesian context aimed at demystifying prior specification and increasing standardization of prior specification processes and documentation.
 
 ### Model Comparison Techniques
 
+Several methods of model comparison exist for Bayesian models.
+
 ### Hierarchical Modeling
+
+#### DAGs

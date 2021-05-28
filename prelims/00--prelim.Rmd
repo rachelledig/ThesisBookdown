@@ -1,24 +1,23 @@
+# What is this? {.unnumbered}
 
+This is a thesis for a Master's Degree in Integrated Natural Resource Management at the Humboldt University of Berlin. This thesis is supervised by Dr. Prof Tobias Krüger and Dr. Prof Christian Schleyer, and advised by Dr. Fabian Stenzel, from the Potsdam Institute for Climate Science.
 
-# What is this? {-}
+## Acknowledgments {.unnumbered}
 
-This is a thesis for a Master's Degree in Integrated Natural Resource Management at the Humboldt University of Berlin. This thesis is supervised by Dr. Prof Tobias Krüger and Dr. Prof Christian Schleyer, and advised by Dr. Fabian Stenzel, from the Potsdam Institute for Climate Science. 
+Adjust your expectations accordingly [@standevelopmentteamRStanInterfaceStan2020]
 
-## Acknowledgements {-}
+To Mom, Dad, Sis and Fi.
 
-To Mom, Dad, Sis and Fi. 
+## Dedication {.unnumbered}
 
-## Dedication {-}
+You can have a dedication here if you wish.
 
-You can have a dedication here if you wish. 
-
-## Abbreviations {-}
+## Abbreviations {.unnumbered}
 
 ```{r packages, include=FALSE}
 library(tidyverse)
 library(kableExtra)
 ```
-
 
 ```{r abbreviations, echo=FALSE, warning=FALSE}
 data_frame(
@@ -30,4 +29,3 @@ data_frame(
 ```
 
 `r if(!knitr:::is_latex_output()) '## Abstract {-}'`
-

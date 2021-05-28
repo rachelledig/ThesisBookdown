@@ -30,13 +30,13 @@ params:
 output:
 # COMMENT OUT THE GIFS PLOTLY BLAH BLAHHHH
 #  thesisdown::thesis_pdf: default 
-  thesisdown::thesis_gitbook:     
-    css: 
+  thesisdown::thesis_gitbook:
+    css:
     anchor_sections: false
-    config: 
+    config:
       fontsettings:
-        theme: 
-        family: 
+        theme:
+        family:
         size:
       sharing:
         facebook: no

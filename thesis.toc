@@ -1,0 +1,32 @@
+\contentsline {chapter}{Chapter 1: Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Objectives}{1}{section.1.1}%
+\contentsline {chapter}{Chapter 2: Context}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Literature}{3}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Drivers of Irrigation Expansion}{3}{subsection.2.1.1}%
+\contentsline {subsubsection}{Water}{4}{section*.8}%
+\contentsline {subsubsection}{Topography}{6}{section*.9}%
+\contentsline {subsubsection}{Soil}{6}{section*.11}%
+\contentsline {subsubsection}{Crops}{7}{section*.12}%
+\contentsline {subsubsection}{Compatibility}{7}{section*.13}%
+\contentsline {subsubsection}{Economics}{7}{section*.14}%
+\contentsline {subsubsection}{Social Influences}{7}{section*.15}%
+\contentsline {subsubsection}{External Influences}{8}{section*.16}%
+\contentsline {subsection}{\numberline {2.1.2}Studies of Irrigation Expansion}{8}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Bayesian Inference}{9}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Bayes Theorem}{10}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}The Prior}{11}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Model Comparison Techniques}{13}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Hierarchical Modeling}{13}{subsection.2.2.4}%
+\contentsline {chapter}{Chapter 3: Data and Variables}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Irrigation Fraction}{15}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Global Historical Irrigation Data Set}{15}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}}{16}{section.3.2}%
+\contentsline {chapter}{Chapter 4: Methods}{17}{chapter.4}%
+\contentsline {chapter}{Chapter 5: Results}{19}{chapter.5}%
+\contentsline {chapter}{Chapter 6: Discussion}{21}{chapter.6}%
+\contentsline {chapter}{Chapter 7: Conclusion}{23}{chapter.7}%
+\contentsline {chapter}{Appendix A: Appendix}{25}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Proof of Bayes' Theorem for Two Hypothesis from \hyperlink {ref-hackingIntroductionProbabilityInductive2001}{Hacking} (\hyperlink {ref-hackingIntroductionProbabilityInductive2001}{2001})}{25}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Digression: Covid Rapid Antigen Tests}{26}{section.A.2}%
+\contentsline {section}{\numberline {A.3}}{27}{section.A.3}%
+\contentsline {chapter}{References}{29}{appendix*.19}%
