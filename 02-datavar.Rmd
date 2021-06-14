@@ -14,9 +14,9 @@ Data for the target variable was collected from @siebertGlobalDataSet2015, who d
 
 [^2]: The act of harvesting rainwater during rain and then later applying it to crops.
 
-<!-- Comment this out when knitting to PDF. 
+<!-- Comment this out when knitting to PDF. --> 
 
-![(\#fig:irrfracgif) Figure detailing the percentage of 5 arcmin grid cell that is equipped for irrigation. This represents global irrigaion pattern from 1900 to 2005 as detailed in @siebertGlobalDataSet2015.](figure/irrfrac.gif)-->
+![(\#fig:irrfracgif) Figure detailing the percentage of 5 arcmin grid cell that is equipped for irrigation. This represents global irrigaion pattern from 1900 to 2005 as detailed in @siebertGlobalDataSet2015.](figure/irrfrac.gif)
 
 To amass this data @siebertGlobalDataSet2015 used a variety of sources to collect national and subnational statistics including FAOSTAT [@faoFAOSTAT2021], EuroStat [@europeancomissionEurostatDatabase2021], and Aquastat [@faoAQUASTAT2021] along with other less collected sources like census data and statistical yearbooks. Data was recorded for 10 year timesteps until 1980 and five year timesteps until the termination of the study period in 2005. Data for the period prior to 1950 and the year 2005 has higher levels of uncertainty in the measurements when compared to the data between, as irrigation data from international organizations (e.g. FAO) were unavailable. After collection the data was harmonized and downscaled to a 5 arcmin resolution. Special care was taken to ensure that high resolution data (at a 5 arcmin resolution) could be accurately summed to the subnational level, ensuring accuracy at different resolutions. In addition, the authors note that validation of this dataset was not possible due to the fact that all available data was used as input to create the HID.
 
